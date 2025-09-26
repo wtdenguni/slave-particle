@@ -17,5 +17,148 @@
 
 \maketitle
 \section{Introduction}
-
+\section{slave rotor method}
+Given a Hubbard Hamiltonian
+\begin{align*}
+    H = -t\sum_{\braket{ij},\sigma}(c_{i\sigma}^{\dagger}c_{j\sigma}+\text{h.c.})+\frac{U}{2}\sum_i\left(\sum_{\sigma}c_{i\sigma}^{\dagger}c_{i\sigma}-\frac{1}{2}\right)^2-\mu\sum_{i\sigma}c_{i\sigma}^{\dagger}c_{i\sigma}
+\end{align*}
+the interaction is determined by the number of particles at each site. Thus we can introduce additional freedom to label the occupancy at each site. Here we introduce an auxiliary rotor field to label the charge degrees of freedom.
+\begin{align*}
+    \ket{\sigma_1\sigma_2\cdots\sigma_Q}_c = \ket{\sigma_1\sigma_2\cdots\sigma_Q}_f\ket{l=Q-\frac{N}{2}}
+\end{align*}
+here we suppose the degrees of freedom at each site is $N$, and $l$ is the eigenvalue of the auxiliary momentum operator $L_z$. For example, we consider an $S=\frac{1}{2}$ one orbital model.
+\begin{align*}
+    &\ket{\uparrow}_c = \ket{\uparrow}_f\ket{0}_{\theta},\ket{\downarrow}_c = \ket{\downarrow}_f\ket{0}_{\theta} \\
+    & \ket{\uparrow\downarrow}_c = \ket{\uparrow\downarrow}_f\ket{1}_{\theta},\ket{0}_c = \ket{0}_f\ket{-1}_{\theta}
+\end{align*}
+To exclude unphysical states, we need put constraints at each site
+\begin{align*}
+    L_{z,i} = \sum_{\sigma}f_{i\sigma}^{\dagger}f_{i\sigma}-\frac{N}{2}
+\end{align*}
+The original electron creation and annihilation operators can be written as
+\begin{align*}
+    c_{i\sigma}^{\dagger} = f_{i\sigma}^{\dagger}e^{i\theta_i},c_{i\sigma} = f_{i\sigma}e^{-i\theta_i}
+\end{align*}
+the partition function can be written in path integral formalism
+\begin{align*}
+    \mathcal{Z} = \int \mathcal{D}L\mathcal{D}\theta\mathcal{D}f^*\mathcal{D}f\mathcal{D}he^{-S[L,\theta,f^*,f,h]}
+\end{align*}
+the action
+\begin{align*}
+    S[L,\theta,f^*,f,h] = \int_0^{\beta}d\tau \left[-i\sum_iL_i\partial_{\tau}\theta_i+\sum_{i\sigma}f^*_{i\sigma}(\partial_{\tau}-\mu-h_i)f_{i\sigma}+\sum_ih_i(L_i+1)+\frac{U}{2}\sum_{i}L_i^2 - t\sum_{\braket{ij},\sigma}\left(e^{i(\theta_i-\theta_j)}f_{i\sigma}^*f_{j\sigma}+\text{h.c.}\right) \right]
+\end{align*}
+we can integrate out the angular momentum field $L_i$. which leads to
+\begin{align*}
+    S[\theta,f^*,f,h] = \int_0^{\beta}d\tau\left[\sum_{i\sigma}f^*_{i\sigma}(\partial_{\tau}-\mu-h_i)f_{i\sigma}+\sum_ih_i+\frac{1}{2U}\sum_{i}(\partial_{\tau}\theta_i+ih_i)^2-t\sum_{\braket{ij},\sigma}\left(e^{i(\theta_i-\theta_j)}f_{i\sigma}^*f_{j\sigma}+\text{h.c.} \right) \right]
+\end{align*}
+to go further, we introduce a complex boson field $X_i = e^{i\theta_i}$ with constraints $|X_i|^2 = 1$ to substitute the phase field, we have
+\begin{align*}
+    S[X,X^*,f^*,f,h,\rho] &= \int_0^{\beta}d\tau\left[\sum_{i\sigma}f^*_{i\sigma}(\partial_{\tau}-\mu-h_i)f_{i\sigma}+\sum_ih_i+\sum_i\frac{|\partial_{\tau}X_i|^2-h_i^2}{2U}\right . \\&\left. +\sum_i\frac{h_i}{U}X_i^*\partial_{\tau}X_i-t\sum_{\braket{ij},\sigma}\left(X_iX_j^*f_{i\sigma}^*f_{j\sigma}+\text{h.c.}\right)+\sum_i\rho_i(|X_i|^2-1) \right]
+\end{align*}
+we can first integrate out the $X_i$ field to obtain an effective action for spinon field$(f_{i\sigma})$, transforming to the frequency regime
+\begin{align*}
+    X_{i}(\tau) = \frac{1}{\sqrt{\beta}}\sum_{\nu_n} X_i(\nu_n)e^{-i\nu_n\tau}
+\end{align*}
+we have
+\begin{align*}
+    S[X,X^*,f^*,f,h,\rho] = &\int_0^{\beta}d\tau \left[\sum_{i\sigma}f_{i\sigma}^*(\partial_{\tau}-\mu-h_i)f_{i\sigma}+\sum_ih_i-\sum_i\frac{h_i^2}{2U}-\sum_i\rho_i\right]\\&+\sum_{i,\nu_n}(X_i(\nu_n))^*(\frac{\nu_n^2}{2U}-i\frac{h_i}{U}\nu_n+\rho_i)X_i(\nu_n)+\sum_{\braket{ij}}\sum_{\nu_n,\nu_m}\left((X_{j}(\nu_n))^*\phi_{ij}(\nu_n-\nu_m)X_{i}(\nu_m)+\text{h.c.}\right)
+\end{align*}
+here
+\begin{align*}
+    \phi_{ij}(\nu_n-\nu_m) = -\frac{t}{\beta}\int_0^{\beta}d\tau \sum_{\sigma}(f_{i\sigma}(\tau))^*f_{j\sigma}(\tau)e^{-i(\nu_n-\nu_m)\tau}
+\end{align*}
+thus, after integrating out the rotor field, we have
+\begin{align*}
+    S_{\text{eff}}[f^*,f,h,\rho] = S_0[f^*,f,h,\rho] +\ln \det{M}
+\end{align*}
+here 
+\begin{align*}
+    M_{i\nu_n,j\nu_m} = G_X^0(\nu_n;,i,i)\delta_{\nu_n,\nu_m}\delta_{ij}+\phi_{ji}(\nu_n-\nu_m)
+\end{align*}
+we can expand the $\ln\det{M}$ term
+\begin{align*}
+    \ln\det{M} &= \ln\det{(G_X^0+\phi)} \\
+    & = \text{Tr}\ln{(G_X^0)^{-1}(I+G_X^0\phi)} \\
+    &= \text{Tr}\ln (G_X^0)^{-1} + \text{Tr}\ln{(I+G_X^0\phi)} \\
+    & = \text{Tr}\ln{(G_X^0)^{-1}}-\sum_{n=1}^{\infty}\frac{1}{n}\text{Tr}\left((-1)^{n-1}(G_X^0\phi)^n\right)
+\end{align*}
+for the $t^2$ order term
+\begin{align*}
+    \frac{1}{2}\text{Tr}\left(G_X^0\phi G_X^0\phi\right) = \frac{1}{2}\sum_{\nu_n,\nu_m}\sum_{ij}G_X^0(\nu_n;i,i)\phi_{ij}(\nu_n-\nu_m)G_X^0(\nu_m;j,j)\phi_{ji}(\nu_m-\nu_n)
+\end{align*}
+which leads to 
+\begin{align*}
+    S_{\text{eff}}^{(2)}[f^*,f,h,\rho] &= \frac{t^2}{2\beta^2}\sum_{\nu_n,\nu_m}\sum_{ij}\int_0^{\beta}d\tau\int_0^{\beta}d\tau'G_X^0(\nu_n;i,i)G_X^0(\nu_m;j,j)\sum_{\sigma\sigma'}(f_{i\sigma}(\tau))^*f_{j\sigma}(\tau)(f_{j\sigma'}(\tau'))^*f_{i\sigma'}(\tau')e^{-i(\nu_n-\nu_m)(\tau-\tau')} \\ 
+    &=\frac{t^2}{2}\sum_{ij}\int_0^{\beta}d\tau\int_0^{\beta}d\tau'G_X^0(\tau-\tau';i,i)G_X^0(\tau'-\tau;j,j)\sum_{\sigma\sigma'}(f_{i\sigma}(\tau))^*f_{j\sigma}(\tau)(f_{j\sigma'}(\tau'))^*f_{i\sigma'}(\tau') \\
+    &\approx\frac{t^2}{2}\sum_{ij}\int_0^{\beta}d\tau\int_0^{\beta}d\tau'G_X^0(\tau-\tau';i,i)G_X^0(\tau'-\tau;j,j)\sum_{\sigma\sigma'}(f_{i\sigma}(\tau))^*f_{j\sigma}(\tau)(f_{j\sigma'}(\tau))^*f_{i\sigma'}(\tau) \\
+    &=\frac{t^2}{2\beta}\sum_{ij}\int_0^{\beta}d\tau \sum_{\nu_n}G_X^0(\nu_n;i,i)G_X^0(\nu_n;j,j)\sum_{\sigma\sigma'}(f_{i\sigma}(\tau))^*f_{j\sigma}(\tau)(f_{j\sigma'}(\tau))^*f_{i\sigma'}(\tau)
+\end{align*}
+this corresponds to an effective Hamiltonian for the spinor field
+\begin{align*}
+    H_{\text{eff}}^{(2)} = \frac{J_{\text{eff}}}{2}\sum_{\sigma,\sigma'}f_{i\sigma}^{\dagger}f_{i\sigma'}f_{j\sigma'}^{\dagger}f_{j\sigma}
+\end{align*}
+here
+\begin{align*}
+    J_{\text{eff}} = \frac{t^2}{\beta}\sum_{\nu_n}G_X^0(\nu_n;i,i)G_X^0(\nu_n;j,j)
+\end{align*}
+\subsection{mean field theory}
+To go further, we can introduce two fields $Q_{ij}^f$ and $Q_{ij}^X$ to decouple the spinon-rotor hopping term.
+\begin{align*}
+    e^{-t\sum_{\braket{ij},\sigma}X_iX_j^*f_{i\sigma}^*f_{j\sigma}} = \int\mathcal{D}Q^X\mathcal{D}Q^fe^{-t\sum_{\braket{ij},\sigma}(Q_{ij}^ff_{i\sigma}^*f_{j\sigma}+Q_{ij}^XX_{i}X_{j}^*-Q_{ij}^XQ_{ij}^f)}
+\end{align*}
+which leads to 
+\begin{align*}
+    S[X^*,X,f^*,f,h,\rho,Q^f,Q^X] = &\int_0^{\beta} d\tau [\sum_{i\sigma}f_{i\sigma}^*(\partial_{\tau}-\mu-h_i)f_{i\sigma}+\sum_ih_i+\sum_i\frac{|\partial_{\tau}X_i|^2-h_i^2}{2U}\\ 
+    &+\sum_i\frac{h_i}{U}X_i^*\partial_{\tau}X_i+\sum_i\rho_i(|X_i|^2-1)-t\sum_{\braket{ij},\sigma}(Q_{ij}^fX_iX_j^*+Q_{ij}^Xf_{i\sigma}^*f_{j\sigma}-Q_{ij}^fQ_{ij}^X)]
+\end{align*}
+Now we want to find the saddle point solution. First, we consider a uniform solution in which $h_i = h,\rho_i = \rho,Q_{ij}^f = Q^f,Q_{ij}^X = Q^X$. We can integrate out the spinon and rotor field to obtain the effective action for the 
+parameters $h,\rho,Q^f,Q^X$.
+\begin{align*}
+e^{-S_{\text{eff}}[h,\rho,Q^f,Q^X]} = \int \mathcal{D}X^*\mathcal{D}X\mathcal{D}f^*\mathcal{D}fe^{-S[X^*,X,f^*,f,h,\rho,Q^f,Q^X]}
+\end{align*}
+Thus, we have
+\begin{align*}
+    -e^{-S_{\text{eff}}[h,\rho,Q^f,Q^X]}\frac{\delta S_{\text{eff}}}{\delta Q^f} &= \int \mathcal{D}X^*\mathcal{D}X\mathcal{D}f^*\mathcal{D}f\left(2tN_{\bm{k}}N_nQ^X-t\sum_{\braket{ij},\sigma}X_iX_j^*\right)e^{-S[X^*,X,f^*,f,h,\rho,Q^f,Q^X]}\\
+    & = e^{-S_{\text{eff}}[h,\rho,Q^f,Q^X]}\left(2tN_{\bm{k}}N_nQ^X-t\sum_{\braket{ij},\sigma}\braket{X_iX_j^*}\right) =0
+\end{align*}
+\begin{align*}
+-e^{-S_{\text{eff}}[h,\rho,Q^f,Q^X]}\frac{\delta S_{\text{eff}}}{\delta Q^X} &= \int \mathcal{D}X^*\mathcal{D}X\mathcal{D}f^*\mathcal{D}f\left(2tN_{\bm{k}}N_nQ^f-t\sum_{\braket{ij},\sigma}f_{i\sigma}^*f_{j\sigma}\right)e^{-S[X^*,X,f^*,f,h,\rho,Q^f,Q^X]}\\
+    & = e^{-S_{\text{eff}}[h,\rho,Q^f,Q^X]}\left(2tN_{\bm{k}}N_nQ^f-t\sum_{\braket{ij},\sigma}\braket{f_{i\sigma}^*f_{j\sigma}}\right) =0
+\end{align*}
+which leads to
+\begin{align*}
+    Q^X &= \frac{1}{N_{\bm{k}}N_n}\sum_{\braket{ij}}\braket{X_iX_j^{\dagger}} = \frac{1}{N_{\bm{k}}N_n}\sum_{\bm{k}}V_{\bm{k}}\braket{X_{\bm{k}}X_{\bm{k}}^{\dagger}} \\
+    Q^f &= \frac{1}{2N_{\bm{k}}N_n}\sum_{\braket{ij},\sigma}\braket{f_{i\sigma}^{\dagger}f_{j\sigma}} = \frac{1}{2N_{\bm{k}}N_n}\sum_{\bm{k}\sigma}V_{\bm{k}}\braket{f_{\bm{k}\sigma}^{\dagger}f_{\bm{k}\sigma}}
+\end{align*}
+Similarly, the parameter $\rho$ is determined by the condition $\braket{|X_i|^2} = 1$. And at half-filling case, it can be shown that $h=0$ for arbitrary $U$.(need proof) Spinor field behaves like fermion fields, thus its ground state is 
+given by a Slater determinant. For the rotor field, the Green's function is a bit different from normal boson field, consider the action
+\begin{align*}
+    S_X = \sum_{\bm{k},\nu_n} X_{\bm{k},\nu_n}^*\left(\frac{\nu_n^2}{2U}+\rho+\epsilon_{\bm{k}} \right) X_{\bm{k},\nu_n}
+\end{align*}
+which leads to 
+\begin{align*}
+ G_X(\bm{k},\nu_n) = \frac{1}{\frac{\nu_n^2}{2U}+\rho+\epsilon_{\bm{k}}}
+\end{align*}
+thus 
+\begin{align*}
+    \braket{X_{\bm{k}}^{\dagger}X_{\bm{k}}} = \frac{1}{\beta}\sum_{\nu_n} G_X(\bm{k},\nu_n) = \sqrt{\frac{U}{2E_{\bm{k}}}}\left(n_B(\sqrt{2UE_{\bm{k}}})-n_B(-\sqrt{2UE_{\bm{k}}}) \right) +Z\delta(E_{\bm{k}})
+\end{align*}
+here $E_{\bm{k}} = \rho + \epsilon_{\bm{k}}$, and $Z$ is the condensate density which is non-zero only when $E_{\bm{k}}$ has zero points. The Mott transition is encoded in the boson condensation of the rotor field. When $U>U_c$,
+the system is in the Mott phase, correspodingly, the rotor boson is gapped($E_{\bm{k},\text{min}}>0$), thus $Z=0$. When $U<U_c$, the rotor boson condenses at zero frequency and zero energy, thus $E_{\bm{k},\text{min}} = 0$ and $Z\neq 0$. 
+\subsubsection{Hexagonal lattice}
+Now we consider a Hubbard model on a hexagonal lattice to illustrate the mean field approach. The Hamiltonian is given by
+\begin{align*}
+    H = -t\sum_{\braket{iA,jB},\sigma}(c_{iA\sigma}^{\dagger}c_{jB\sigma}+\text{h.c.})+\frac{U}{2}\sum_{i,\tau}\left(\sum_{\sigma}c_{i\tau\sigma}^{\dagger}c_{i\tau\sigma}-1\right)^2-\mu\sum_{i\tau\sigma}c_{i\tau\sigma}^{\dagger}c_{i\tau\sigma}
+\end{align*}
+slave rotor approach introduce an auxilliary rotor field to label the charge degrees of freedom $c_{i\tau\sigma}^{\dagger} = f_{i\tau\sigma}^{\dagger}X_{i\tau}$, with constraints $L_{i\tau} = \sum_{\sigma}f_{i\tau\sigma}^{\dagger}f_{i\tau\sigma} -\frac{1}{2}$ and $|X_{i\tau}|^2 = 1$. At half filling, the mean field theory decouples the spinon and rotor field,
+\begin{align*}
+    &H_f = -tQ_f\sum_{\braket{iA,jB},\sigma}(f_{iA\sigma}^{\dagger}f_{jB\sigma}+\text{h.c.}) \\
+    &H_X = -tQ_X\sum_{\braket{iA,jB}}(X_{iA}X_{jB}^{\dagger}+\text{h.c.})+\sum_{i\tau}\rho_{\tau}X_{i\tau}^{\dagger}X_{i\tau}
+\end{align*}
+the self-consistent equation gives
+\begin{align*}
+      &Q_f = \frac{1}{N_{\bm{k}}N_n}\sum_{\bm{k}}V_{\bm{k}}\braket{X_{\bm{k}A}X_{\bm{k}B}^{\dagger}}\\
+      &Q_X = \frac{1}{2N_{\bm{k}}N_n}\sum_{\bm{k},\sigma}V_{\bm{k}}\braket{f_{\bm{k}A\sigma}^{\dagger}f_{\bm{k}B\sigma}}\\
+      & \frac{1}{N_{\bm{k}}}\sum_{\bm{k}}\braket{X_{\bm{k}A}^{\dagger}X_{\bm{k}A}} = \frac{1}{N_{\bm{k}}}\sum_{\bm{k}}\braket{X_{\bm{k}B}^{\dagger}X_{\bm{k}B}} = 1 
+\end{align*}
 \end{document}
