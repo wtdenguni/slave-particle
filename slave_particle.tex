@@ -161,4 +161,45 @@ the self-consistent equation gives
       &Q_X = \frac{1}{2N_{\bm{k}}N_n}\sum_{\bm{k},\sigma}V_{\bm{k}}\braket{f_{\bm{k}A\sigma}^{\dagger}f_{\bm{k}B\sigma}}\\
       & \frac{1}{N_{\bm{k}}}\sum_{\bm{k}}\braket{X_{\bm{k}A}^{\dagger}X_{\bm{k}A}} = \frac{1}{N_{\bm{k}}}\sum_{\bm{k}}\braket{X_{\bm{k}B}^{\dagger}X_{\bm{k}B}} = 1 
 \end{align*}
+\appendix
+\section{spectral weight}
+In strong correlation system, we'd like to examine the applicability of the "quasiparticle" idea or say the single particle picture.
+We know in non-interacting system, the single particle state $\ket{\bm{k}\sigma}$ is one of the eigenstates. Thus, if we add one electron with momentum $\bm{k}$, 
+it will occupy the corresponding eigenstate. Now we turn on the interaction, the single particle state is no longer the eigenstate of the system. If we add a single particle to the system, we will obtain a state
+$c_{\bm{k}\sigma}^{\dagger}\ket{\phi}$. This state is now a superposition of the new eigenstates of the interacting system. If we look at the energy distribution of the state, it will gives
+\begin{align*}
+    A(\bm{k},\omega) = \sum_{\lambda}|\bra{\lambda}c_{\bm{k}\sigma}^{\dagger}\ket{\phi}|^2\delta(\omega-\epsilon_{\lambda})
+\end{align*}
+Under the adiabatic continuation, when we turn on the interaction, the new eigenstate can be related to the 
+non interacting eigenstate through a unitary transformation. Especially for the single particle state, the corresponding new eigenstate can be written as
+\begin{align*}
+    a_{\bm{k}\sigma}^{\dagger} = Uc_{\bm{k}\sigma}^{\dagger}U^{\dagger} = \sqrt{Z_{\bm{k}}}c_{\bm{k}\sigma}^{\dagger}+\sum_{\bm{k_3}+\bm{k_4} = \bm{k_2}+\bm{k}}A(\bm{k}_3,\bm{k}_4;\bm{k}_2,\bm{k})c^{\dagger}_{\bm{k_3}\sigma_3}c^{\dagger}_{\bm{k_4}\sigma_4}c_{\bm{k_2}\sigma_2}+\cdots
+\end{align*}
+the momentum is still a good quantum number, but the eigenstate no longer contains only single particle component. Thus, the quasiparticle picture is a good approximation if the new eigenstate has a finite overlap with the single particle state $\ket{\bm{k}\sigma}$ 
+\begin{align*}
+    Z_{\bm{k}} = |\bra{\tilde{\bm{k}\sigma}}c_{\bm{k\sigma}}^{\dagger}\ket{\phi}|^2 \sim \mathcal{O}(1) 
+\end{align*}  
+here $\ket{\tilde{\bm{k}\sigma}}$ represents the adiabatic continuation of the single particle state $\ket{\bm{k}\sigma}$. If we add a single electron with momentum $\bm{k}$ to the system, it will excites a continuum of states $\ket{\lambda}$ represented by the energy distribution we discussed above. 
+According to the discussion, the quasiparticle picture works if the spectrum has a sharp peak at $\lambda = \epsilon_{\bm{k}}$. This peak represents the reserved single particle component which represents the coherent propagating part in the spectrum. Except the coherent part, the spectrum also has  a messy and broad incoherent background which 
+represents other higher excitations beyond the single particle component. 
+
+If the Fermi liquid picture fails, we will see the coherent peak will disappear from the spectrum. For example, in Mott insulator, the spectrum will only have two Hubbard bands seperated by $U$ and the quasiparticle peak disappears.
+
+This energy distribution(spectral weight) is tightly related to the single particle Green's function. Consider
+\begin{align*}
+    G_{k\sigma}(t-t')&=-i\bra{\phi}Tc_{k\sigma}(t)c_{k\sigma}^{\dagger}(t')\ket{\phi}\\
+    &=-i(\theta(t-t')\bra{\phi}c_{k\sigma}(t)c^{\dagger}_{k\sigma}(t')\ket{\phi}-\theta(t'-t)\bra{\phi}c^{\dagger}_{k\sigma}(t')c_{k\sigma}(t)\ket{\phi})\\
+     &= -i(\theta(t-t')\sum_{\lambda}e^{-\frac{i}{\hbar}(E_{\lambda}-E_g)(t-t')}\bra{\phi}c_{k\sigma}\ket{\lambda}\bra{\lambda}c_{k\sigma}^{\dagger}\ket{\phi}-\\
+     &\quad\ \theta(t'-t)\sum_{\lambda}e^{-\frac{i}{\hbar}(E_{\lambda}-E_g)(t'-t)}\bra{\phi}c_{k\sigma}^{\dagger}\ket{\lambda}\bra{\lambda}c_{k\sigma}\ket{\phi})
+\end{align*}
+Transform to the frequency regime, we have
+\begin{align*}
+    G(\bm{k}\sigma,\omega)  &=  \int _{-\infty}^{+\infty} dt e^{i\omega t} G(\bm{k}\sigma,t) \\
+    & = \sum \frac{|\bra{\lambda}c_{\bm{k}\sigma}^{\dagger}\ket{\phi}|^2}{\omega-(E_{\lambda}-E_g)/\hbar+i\delta} 
+    + \frac{|\bra{\lambda}c_{\bm{k}\sigma}\ket{\phi}|^2}{\omega-(E_{\lambda}-E_{g})/\hbar-i\delta}
+\end{align*}
 \end{document}
+
+
+
+
